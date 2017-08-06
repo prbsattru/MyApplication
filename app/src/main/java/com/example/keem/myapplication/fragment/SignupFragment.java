@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.keem.myapplication.R;
+import com.example.keem.myapplication.manager.MyAlert;
 
 /**
  * Created by masterung on 8/6/2017 AD.
