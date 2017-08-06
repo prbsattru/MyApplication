@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.example.keem.myapplication.R;
 import com.example.keem.myapplication.manager.MyAlert;
+import com.example.keem.myapplication.manager.PostUserToServer;
 
 /**
  * Created by masterung on 8/6/2017 AD.
@@ -68,13 +69,29 @@ public class SignupFragment extends Fragment {
                 } else {
                     //No Space
                     Log.d("6AugV1", "No Space");
+                    uploadValue();
 
                 }
 
-
-
             }   // onClick
         });
+    }
+
+    private void uploadValue() {
+        try
+        PostUserToServer postUserToServer = new PostUserToServer(getActivity());
+        postUserToServer.execute(nameString, userString, passwordString,"http://androidthai.in.th/rbac/addDataMaster123.php");
+        String strResult = postUserToServer.get();
+        Log.d("6AugV1", "Result ==>" + strResult);
+
+        if (Boolean.parseBoolean(strResult)) {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainConteiner, new MaindFragment()).commit();
+        } else {
+        }
+
+    } catch (Exception e){
+        e.printStackTrace();
+    }
     }
 
     private void backController() {
